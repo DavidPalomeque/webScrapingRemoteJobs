@@ -13,32 +13,18 @@ const fs = require("fs");
 
         var content = await page.evaluate(() => { // main function
             var links = document.querySelectorAll(".elementor-text-editor ul li a[href]") // selected element/s
-            // variables , objects , arrays to return
-            var linksArray = []
-            var linksTextArray = []
-            var linksUrlArray = []
-            var jsonContent = {
-                websites : [] , 
-                urls : []
-            }
+            var linksArray = [] // array to return
             for (let i = 0; i < links.length; i++) { // for each element selected
                 var linksText = links[i].innerText.trim()
                 var linksUrl = links[i].getAttribute("href")
-                jsonContent.websites.push(linksText)
-                jsonContent.urls.push(linksUrl)
                 linksArray.push(linksText + " : " + linksUrl + "\n")
-                linksTextArray.push(linksText + "\n")
-                linksUrlArray.push(linksUrl + "\n")
             }
-            // then return ONLY ONE of these
-            // return jsonContent
-            // return linksArray.join("")
-            // return linksTextArray.join("")
-            // return linksUrlArray.join("")
+            // then return
+            return linksArray.join("")
         })
 
         await browser.close(); // close browser
-        fs.writeFile("remoteJobs.txt" , /* JSON.stringify(content) */ content , function (err) { // write txt / json file
+        fs.writeFile("remoteJobs.txt" , content , function (err) { // write txt file
             if (err) throw err
             console.log("Done !");
         })
