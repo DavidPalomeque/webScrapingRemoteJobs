@@ -8,7 +8,8 @@ const fs = require("fs");
 
         var browser = await puppeteer.launch({ headless: false }); // browser
         var page = await browser.newPage(); // new page
-        await page.goto("https://yourdreamremotejobnow.com/2020-long-list-of-remote-job-boards-for-any-professionals-in-any-industry-based-in-any-location/?fbclid=IwAR3hlX9nacKKb3BD5u7XIiKidiS-Y7PrbpgeyFUIGB7T5bLVAkd-4cjbhJE" , {waitUntil: 'load', timeout: 0}); // url
+        //await page.goto("https://yourdreamremotejobnow.com/2020-long-list-of-remote-job-boards-for-any-professionals-in-any-industry-based-in-any-location/?fbclid=IwAR3hlX9nacKKb3BD5u7XIiKidiS-Y7PrbpgeyFUIGB7T5bLVAkd-4cjbhJE" , {waitUntil: 'load', timeout: 0}); // expired url
+        await page.goto("https://yourdreamremotejobnow.com/2020-list-of-remote-job-boards/", {waitUntil: 'load', timeout: 0}); // updated url
         await page.waitForSelector("#main"); // selector
 
         var content = await page.evaluate(() => { // main function
